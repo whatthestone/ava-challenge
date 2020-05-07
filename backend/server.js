@@ -1,15 +1,51 @@
 // Import packages
 const express = require("express");
 const morgan = require("morgan");
-
-//Mongo DB
-const { MongoClient } = require("mongodb");
-const uri = `mongodb+srv://${DB_USERNAME}:${DB_PASS}@<your-cluster-url>/test?retryWrites=true&w=majority`;
-
-// App
+let bodyParser = require("body-parser");
 const app = express();
-// Morgan
-app.use(morgan("tiny"));
+const port = 8000;
+const USER = process.env.DB_USERNAME;
+const PASS = process.env.DB_PASS;
+// Starting server
+app.listen(port, () => {
+  console.log("Listening on port " + port);
+});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(require("./routes/index.routes"));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+app.use(bodyParser.json());
+
+//Basic MongoDB
+// const MongoClient = require("mongodb").MongoClient;
+// const dbpath = `mongodb+srv://${USER}:${PASS}@@kaising1-aya62.mongodb.net/test?retryWrites=true&w=majority`;
+// MongoClient.connect(
+//   dbpath,
+//   { useNewUrlParser: true, useUnifiedTopology: true },
+//   (err, client) => {
+//     if (err) return console.error(err);
+//     console.log("Connected to Database");
+//   }
+// );
+
+//DB
+let mongoose = require("mongoose");
+const url = `mongodb://kaisingmacbook.local:27017/collab-api`;
+mongoose.connect(url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+var db = mongoose.connection;
+db.once("open", (_) => {
+  console.log("Database connected:", url);
+});
+db.on("error", (err) => {
+  console.error("connection error:", err);
+});
 
 //allow cors
 app.use(function (req, res, next) {
@@ -21,19 +57,6 @@ app.use(function (req, res, next) {
   );
   next();
 });
-
-app.get("/ping", (req, res) => {
-  res.json({ message: "pong" });
-});
-app.get("/", (req, res) => {
-  res.json({ message: "Hello" });
-});
-
-// Starting server
-app.listen("8000");
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(require("./routes/index.routes"));
 
 // const WebSocket = require('ws');
 //
