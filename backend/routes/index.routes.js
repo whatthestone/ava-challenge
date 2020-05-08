@@ -2,9 +2,12 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 module.exports = router;
+
 router.use("/mutations", require("./mutations.routes1"));
 router.use("/conversations", require("./conversations.routes1"));
-
+router.use("/", (req, res) => {
+  res.send("hello world");
+});
 // async function runCode() {
 //   // Create an instance of model SomeModel
 //   var testInstance = new Conversations({

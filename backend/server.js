@@ -10,6 +10,18 @@ const PASS = process.env.DB_PASS;
 app.listen(port, () => {
   console.log("Listening on port " + port);
 });
+
+//allow cors
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,OPTIONS,DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(require("./routes/index.routes"));
@@ -47,16 +59,6 @@ var db = mongoose.connection;
 //   console.error("connection error:", err);
 // });
 
-//allow cors
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,OPTIONS,DELETE");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 // const WebSocket = require('ws');
 //
 // const wss = new WebSocket.Server({ port: 3030 });
