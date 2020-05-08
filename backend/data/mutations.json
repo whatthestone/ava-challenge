@@ -1,1 +1,33 @@
-[{"id":2,"author":"bob","conversationId":"convo1","data":{"index":3,"text":" house","type":"insert"},"origin":{"alice":0,"bob":1}},{"id":3,"author":"bob","data":{"index":9,"text":" is","type":"insert"},"origin":{"alice":0,"bob":2}},{"id":4,"author":"bob","data":{"index":12,"text":" red.","type":"insert"},"origin":{"alice":0,"bob":3}},{"id":5,"author":"bob","data":{"index":13,"length":4,"type":"delete"},"origin":{"alice":0,"bob":4}},{"id":6,"author":"alice","data":{"index":3,"text":" big","type":"insert"},"origin":{"alice":2,"bob":6}},{"id":7,"createdAt":"Wed May 06 2020 22:49:36 GMT-0700 (Pacific Daylight Time)","updatedAt":"Wed May 06 2020 22:49:36 GMT-0700 (Pacific Daylight Time)","author":"bob","conversationId":"1588830432947","data":{"type":"insert","index":0,"text":"The"},"origin":{"bob":0,"alice":0}},{"id":8,"createdAt":"Wed May 06 2020 22:50:42 GMT-0700 (Pacific Daylight Time)","updatedAt":"Wed May 06 2020 22:50:42 GMT-0700 (Pacific Daylight Time)","author":"bob","conversationId":"1588830432947","data":{"type":"insert","index":3,"text":" house"},"origin":{"bob":1,"alice":0}},{"id":9,"createdAt":"Wed May 06 2020 22:51:26 GMT-0700 (Pacific Daylight Time)","updatedAt":"Wed May 06 2020 22:51:26 GMT-0700 (Pacific Daylight Time)","author":"bob","conversationId":"1588830432947","data":{"type":"insert","index":0,"text":"The"},"origin":{"bob":0,"alice":0}},{"id":10,"createdAt":"Wed May 06 2020 22:51:40 GMT-0700 (Pacific Daylight Time)","updatedAt":"Wed May 06 2020 22:51:40 GMT-0700 (Pacific Daylight Time)","author":"bob","conversationId":"1588830432947","data":{"type":"insert","index":3,"text":" house"},"origin":{"bob":1,"alice":0}},{"id":11,"createdAt":"Wed May 06 2020 22:51:45 GMT-0700 (Pacific Daylight Time)","updatedAt":"Wed May 06 2020 22:51:45 GMT-0700 (Pacific Daylight Time)","author":"bob","conversationId":"1588830705139","data":{"type":"insert","index":0,"text":"The"},"origin":{"bob":0,"alice":0}},{"id":12,"createdAt":"Wed May 06 2020 22:51:45 GMT-0700 (Pacific Daylight Time)","updatedAt":"Wed May 06 2020 22:51:45 GMT-0700 (Pacific Daylight Time)","author":"bob","conversationId":"1588830705139","data":{"type":"insert","index":3,"text":" house"},"origin":{"bob":1,"alice":0}},{"id":13,"createdAt":"Wed May 06 2020 22:51:45 GMT-0700 (Pacific Daylight Time)","updatedAt":"Wed May 06 2020 22:51:45 GMT-0700 (Pacific Daylight Time)","author":"bob","conversationId":"1588830705178","data":{"type":"insert","index":0,"text":"The"},"origin":{"bob":0,"alice":0}},{"id":14,"createdAt":"Wed May 06 2020 22:51:45 GMT-0700 (Pacific Daylight Time)","updatedAt":"Wed May 06 2020 22:51:45 GMT-0700 (Pacific Daylight Time)","author":"bob","conversationId":"1588830705233","data":{"type":"insert","index":0,"text":"The"},"origin":{"bob":0,"alice":0}},{"id":15,"createdAt":"Wed May 06 2020 22:51:45 GMT-0700 (Pacific Daylight Time)","updatedAt":"Wed May 06 2020 22:51:45 GMT-0700 (Pacific Daylight Time)","author":"bob","conversationId":"1588830705233","data":{"type":"insert","index":3,"text":" house"},"origin":{"bob":1,"alice":0}},{"id":16,"createdAt":"Wed May 06 2020 22:52:24 GMT-0700 (Pacific Daylight Time)","updatedAt":"Wed May 06 2020 22:52:24 GMT-0700 (Pacific Daylight Time)","author":"bob","conversationId":"1588830705139","data":{"type":"insert","index":0,"text":"The"},"origin":{"bob":0,"alice":0}},{"id":17,"createdAt":"Wed May 06 2020 22:52:34 GMT-0700 (Pacific Daylight Time)","updatedAt":"Wed May 06 2020 22:52:34 GMT-0700 (Pacific Daylight Time)","author":"bob","conversationId":"1588830705139","data":{"type":"insert","index":3,"text":" house"},"origin":{"bob":1,"alice":0}},{"id":18,"createdAt":"Wed May 06 2020 22:53:51 GMT-0700 (Pacific Daylight Time)","updatedAt":"Wed May 06 2020 22:53:51 GMT-0700 (Pacific Daylight Time)","author":"bob","conversationId":"1588830705139","data":{"type":"insert","index":3,"text":" house"},"origin":{"bob":1,"alice":0}}]
+[
+  {
+    "id": 2,
+    "author": "bob",
+    "conversationId": "convo1",
+    "data": { "index": 3, "text": " house", "type": "insert" },
+    "origin": { "alice": 0, "bob": 1 }
+  },
+  {
+    "id": 3,
+    "author": "bob",
+    "data": { "index": 9, "text": " is", "type": "insert" },
+    "origin": { "alice": 0, "bob": 2 }
+  },
+  {
+    "id": 4,
+    "author": "bob",
+    "data": { "index": 12, "text": " red.", "type": "insert" },
+    "origin": { "alice": 0, "bob": 3 }
+  },
+  {
+    "id": 5,
+    "author": "bob",
+    "data": { "index": 13, "length": 4, "type": "delete" },
+    "origin": { "alice": 0, "bob": 4 }
+  },
+  {
+    "id": 6,
+    "author": "alice",
+    "data": { "index": 3, "text": " big", "type": "insert" },
+    "origin": { "alice": 2, "bob": 6 }
+  }
+]

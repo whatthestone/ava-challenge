@@ -7,9 +7,9 @@ router.route('/')
 
 router
   .route("/:conversations_id")
-  .get(conversationsController.view)
-  .patch(conversationsController.update)
-  .put(conversationsController.update)
-  .delete(conversationsController.delete);
+  // .get(conversationsController.view)
+  // .patch(conversationsController.update)
+  // .put(conversationsController.update)
+  // .delete(conversationsController.delete);
 
 module.exports = router;

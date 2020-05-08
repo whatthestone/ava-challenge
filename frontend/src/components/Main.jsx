@@ -17,7 +17,7 @@ const Main = ({}) => {
         return res.json();
       })
       .then((json) => {
-        setConversations(json);
+        setConversations(json.data.convos);
       });
   }, [conversations]);
 

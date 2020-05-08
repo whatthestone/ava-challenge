@@ -40,24 +40,23 @@ mongoose.connect(url, {
   useUnifiedTopology: true,
 });
 var db = mongoose.connection;
-db.once("open", (_) => {
-  console.log("Database connected:", url);
-});
-db.on("error", (err) => {
-  console.error("connection error:", err);
-});
+// db.once("open", (_) => {
+//   console.log("Database connected:", url);
+// });
+// db.on("error", (err) => {
+//   console.error("connection error:", err);
+// });
 
 //allow cors
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,OPTIONS,DELETE");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
 });
-
 // const WebSocket = require('ws');
 //
 // const wss = new WebSocket.Server({ port: 3030 });

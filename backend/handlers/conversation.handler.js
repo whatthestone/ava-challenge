@@ -1,4 +1,4 @@
-const convoFile = path.join(__dirname, "../data/conversations.json");
+// const convoFile = path.join(__dirname, "../data/conversations.json");
 const convos = require(convoFile);
 const helper = require("../helpers/helper.js");
 

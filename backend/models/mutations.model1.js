@@ -1,22 +1,23 @@
 // contactModel.js
 var mongoose = require("mongoose");
 // Setup schema
+
 var mutationsSchema = mongoose.Schema({
   author: {
     type: String,
-    required: true,
+    // required: true,
   },
   conversationId: {
     type: String,
-    required: true,
+    // required: true,
   },
   data: {
     type: Object,
-    required: true,
+    // required: true,
   },
   origin: {
     type: Object,
-    required: true,
+    // required: true,
   },
 });
 

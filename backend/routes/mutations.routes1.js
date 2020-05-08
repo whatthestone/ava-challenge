@@ -7,9 +7,9 @@ router.route('/')
 
 router
   .route("/:mutations_id")
-  .get(mutationsController.view)
-  .patch(mutationsController.update)
-  .put(mutationsController.update)
-  .delete(mutationsController.delete);
+  // .get(mutationsController.view)
+  // .patch(mutationsController.update)
+  // .put(mutationsController.update)
+  // .delete(mutationsController.delete);
 
 module.exports = router;
