@@ -1,5 +1,6 @@
 var Mutations = require("../models/mutations.model1.js");
-// var handler = require("../handlers/conversation.handler.js");
+var Conversations = require("../models/conversations.model1.js");
+var handler = require("../handlers/conversation.handler1.js");
 
 exports.index = async (req, res) => {
   try {
@@ -17,13 +18,17 @@ exports.index = async (req, res) => {
   }
 };
 
-
 // Handle create mutation actions
 exports.new = async (req, res) => {
   const mutation = new Mutations(req.body);
   console.log(mutation);
   try {
-    // handler.handleMutation(mutation);
+    console.log(mutation.conversationId);
+    const convo = await Conversations.findOne({ id: mutation.conversationId });
+
+    const newText = handler.handleMutation(mutation, convo);
+    mutation.data.text = newText;
+
     const response = await mutation.save();
     console.log(response);
     res.send(mutation);

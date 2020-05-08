@@ -6,8 +6,8 @@ router.route('/')
     .post(conversationsController.new);
 
 router
-  .route("/:conversations_id")
-  // .get(conversationsController.view)
+  .route("/:conversation_id")
+  .get(conversationsController.view)
   // .patch(conversationsController.update)
   // .put(conversationsController.update)
   // .delete(conversationsController.delete);

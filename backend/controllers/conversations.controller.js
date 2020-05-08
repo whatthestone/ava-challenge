@@ -1,6 +1,5 @@
 var Conversations = require("../models/conversations.model1.js");
 
-
 exports.index = async (req, res) => {
   try {
     const convos = await Conversations.find();
@@ -29,6 +28,26 @@ exports.new = async (req, res) => {
     res.status(500).send(err);
   }
 };
+
+// Handle view one convo,
+exports.view = async (req, res) => {
+  try {
+    const convo = await Conversations.findOne({
+      id: `${req.params.conversation_id}`,
+    });
+    res.header("Access-Control-Allow-Origin", "*");
+    res.status(200).json({
+      status: "success",
+      data: convo,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
 // // Handle view conversation info
 // exports.view = function (req, res) {
 //   Conversations.findById(req.params.conversation_id, function (
@@ -42,6 +61,7 @@ exports.new = async (req, res) => {
 //     });
 //   });
 // };
+
 // // Handle update conversation info
 // exports.update = function (req, res) {
 //   Conversations.findById(req.params.conversation_id, function (
