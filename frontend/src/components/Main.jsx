@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Form, Container, Row, Button, Card } from "react-bootstrap";
 import Convo from "./Convo";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const Main = ({}) => {
   const [conversations, setConversations] = useState([]);
@@ -17,7 +17,7 @@ const Main = ({}) => {
         return res.json();
       })
       .then((json) => {
-        let data = json.data.convos;
+        let data = json.conversations;
         data.sort(function (a, b) {
           return a.id.localeCompare(b.id);
         });
@@ -66,8 +66,8 @@ const Main = ({}) => {
         return res.json();
       })
       .then((json) => {
-        console.log(json.data.convos);
-        setConversations(json.data.convos);
+        console.log(json.conversations);
+        setConversations(json.conversations);
       });
 
     if (starredConvos.length) {
@@ -112,6 +112,7 @@ const Main = ({}) => {
         {conversations &&
           conversations.map((convo, index) => (
             <Convo
+              key={convo.id}
               convo={convo}
               onStar={(toStar, convo) => handleStar(toStar, convo)}
               onDelete={() => handleDelete(convo.id)}

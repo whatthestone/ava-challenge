@@ -1,20 +1,24 @@
 var Conversations = require("../models/conversations.model1.js");
 
-
 //GET all conversations
 exports.index = async (req, res) => {
   try {
     const convos = await Conversations.find({}, (err, docs) => {});
     res.header("Access-Control-Allow-Origin", "*");
-    res.status(200).json({
-      status: "success",
-      results: convos.length,
-      data: { convos },
-    });
+    // status: "success",
+    // results: convos.length,
+    // data: { convos },
+    res
+      .status(200)
+      .json({
+        conversations: convos,
+        msg: "Convos retrieved",
+      })
+      .send("OK");
   } catch (err) {
     res.status(404).json({
       status: "fail",
-      message: err,
+      message: "404 Error",
     });
   }
 };
@@ -22,11 +26,21 @@ exports.index = async (req, res) => {
 // POST new conversation
 exports.new = async (req, res) => {
   const conversation = new Conversations(req.body);
+
   try {
-    const response = await conversation.save((err, docs) => {});
-    console.log(response);
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send(conversation);
+    const convo = await Conversations.findOne(
+      { id: conversation.id },
+      (err, convo) => {}
+    );
+    console.log(convo);
+    if (!convo) {
+      await conversation.save((err, docs) => {});
+      console.log(conversation);
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(conversation);
+    } else {
+      res.send("Conversation ID already exists, please use another ID");
+    }
   } catch (err) {
     res.status(500).send(err);
   }
@@ -42,7 +56,7 @@ exports.view = async (req, res) => {
       (err, convo) => {}
     );
     res.header("Access-Control-Allow-Origin", "*");
-    res.status(200).json({
+    res.status(201).json({
       status: "success",
       data: convo,
     });
@@ -65,8 +79,8 @@ exports.delete = async (req, res) => {
     console.log(convo);
     await Conversations.deleteOne({ _id: convo._id }, (err, docs) => {});
     res.json({
-      message: `Deleted conversation: ${req.params.conversation_id}`
-    })
+      message: `Deleted conversation: ${req.params.conversation_id}`,
+    });
   } catch (err) {
     res.json(err);
   }

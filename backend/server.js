@@ -4,8 +4,11 @@ const morgan = require("morgan");
 let bodyParser = require("body-parser");
 const app = express();
 const port = 8000;
-const USER = process.env.DB_USERNAME;
-const PASS = process.env.DB_PASS;
+
+const dotenv = require("dotenv");
+dotenv.config();
+const connectionString = process.env.MONGODB_CONNECTION_STRING;
+
 // Starting server
 app.listen(port, () => {
   console.log("Listening on port " + port);
@@ -34,10 +37,19 @@ app.use(bodyParser.json());
 
 //DB
 let mongoose = require("mongoose");
-// const url = `mongodb://kaisingmacbook.local:27017/collab-api`;
-const url=`mongodb+srv://kaisinguser1:${PASS}>@kaising1-aya62.mongodb.net/collab-api`
-mongoose.connect(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// const connectionString = `mongodb://kaisingmacbook.local:27017/collab-api`;
+
+mongoose
+  .connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .catch((err) => console.log(err));
+
 var db = mongoose.connection;
+db.once("open", (_) => {
+  console.log("Database connected:", connectionString);
+});
+db.on("error", (err) => {
+  console.error("connection error:", err);
+});

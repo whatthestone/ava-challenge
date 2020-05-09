@@ -9,6 +9,11 @@ router.use("/info", (req, res) => {
   res.send(reflections);
 });
 
+// 
+// 1. How did you approach the problem? Tell us in 5-10 sentences max.
+// 2. What would you add if you have more time?
+// 3. What would you remove / add in the challenge if you were in the hiring side?
+
 const reflections = {
   author: {
     email: "kaising.n@gmail.com",

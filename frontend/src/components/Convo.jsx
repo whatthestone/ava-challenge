@@ -38,6 +38,7 @@ const Convo = ({ convo, onStar, onDelete }) => {
 
   //send a new mutation to the backend
   const sendMutation = (newText) => {
+    console.log(newText);
     const oldText = convoText;
     setConvoText(newText);
 
@@ -48,6 +49,7 @@ const Convo = ({ convo, onStar, onDelete }) => {
 
     if (oldT.length < newT.length) {
       const result = insertT(oldT, newT);
+      console.log(result);
       newData = {
         type: "insert",
         index: result[0],
@@ -101,11 +103,11 @@ const Convo = ({ convo, onStar, onDelete }) => {
         </Card.Text>
         {convo.lastMutation && (
           <Card.Text>
-            <div>Last Mutation By: {convo.lastMutation.author}</div>
-            <div>
+            <Card.Text tag="div">Last Mutation By: {convo.lastMutation.author}</Card.Text>
+            <Card.Text tag="div">
               {convo.lastMutation.data.type}: {convo.lastMutation.data.text} @
               index {convo.lastMutation.data.index}
-            </div>
+            </Card.Text>
           </Card.Text>
         )}
         <Button
