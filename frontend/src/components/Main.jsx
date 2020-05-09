@@ -17,36 +17,16 @@ const Main = ({}) => {
         return res.json();
       })
       .then((json) => {
-        setConversations(json.data.convos);
+        let data = json.data.convos;
+        data.sort(function (a, b) {
+          return a.id.localeCompare(b.id);
+        });
+        setConversations(data);
       });
   }, [conversations]);
 
   const handleStar = (toStar, convo) => {
     toStar ? addStar(convo) : delStar(convo);
-  };
-
-  const tempPost = () => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        author: "alice",
-        conversationId: "convo1",
-        data: {
-          type: "insert",
-          index: 0,
-          text: "Woah",
-        },
-        origin: {
-          bob: 0,
-          alice: 0,
-        },
-      }),
-    };
-
-    fetch("http://localhost:8000/mutations", requestOptions)
-      .then((response) => response.json())
-      .then((data) => console.log(data));
   };
 
   const handleDelete = (id) => {
@@ -100,7 +80,6 @@ const Main = ({}) => {
 
   return (
     <Container>
-      <Button onClick={tempPost}>Post</Button>
       <Row style={{ paddingTop: "100px" }}>
         <h1 style={{ width: "50rem", margin: "auto", marginBottom: "100px" }}>
           Conversations
