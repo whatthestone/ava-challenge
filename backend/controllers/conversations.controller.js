@@ -73,17 +73,19 @@ exports.update = async (req, res) => {
 };
 
 // Handle delete conversation
-exports.delete = function (req, res) {
-  Conversations.remove(
-    {
-      _id: req.params.conversation_id,
-    },
-    function (err, conversation) {
-      if (err) res.send(err);
-      res.json({
-        status: "success",
-        message: "Conversations deleted",
-      });
-    }
+exports.delete = async (req, res) => {
+  const convo = await Conversations.findOne(
+    { id: `${req.params.conversation_id}` },
+    (err, convo) => {}
   );
+  console.log("del: " + convo);
+  try {
+    console.log(convo);
+    await Conversations.deleteOne({ _id: convo._id }, (err, docs) => {});
+    res.json({
+      message: `Deleted conversation: ${req.params.conversation_id}`
+    })
+  } catch (err) {
+    res.json(err);
+  }
 };

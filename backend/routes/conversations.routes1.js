@@ -10,6 +10,6 @@ router
   .get(conversationsController.view)
   // .patch(conversationsController.update)
   // .put(conversationsController.update)
-  // .delete(conversationsController.delete);
+  .delete(conversationsController.delete);
 
 module.exports = router;
