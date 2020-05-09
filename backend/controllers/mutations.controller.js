@@ -35,8 +35,7 @@ exports.new = async (req, res) => {
         lastMutation: mutation,
         text: mutation.data.text,
       });
-      const newConvo = await convo.save((req, res) => {});
-
+      await convo.save((req, res) => {});
     } else if (convo && mutation.data.type === "insert") {
       //insert operations
       const text = convo.text.split("");
@@ -52,18 +51,18 @@ exports.new = async (req, res) => {
       await Conversations.deleteOne({ _id: convo._id });
       //save new convo
       const newConvo = await conversation.save((err, docs) => {});
-      
     } else if (convo && mutation.data.type === "delete") {
       //delete operations
       const text = convo.text.split("");
       text.splice(mutation.data.index, mutation.data.length);
-      newText = text.join("");
+      newText = text.join("") || "";
+      console.log(newText);
 
       //add the new convo
       const conversation = new Conversations({
         id: mutation.conversationId,
         lastMutation: mutation,
-        text: newText,
+        text: newText || "",
       });
 
       //delete the old convo

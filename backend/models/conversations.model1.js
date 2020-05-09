@@ -13,7 +13,6 @@ var conversationsSchema = mongoose.Schema({
   },
   text: {
     type: String,
-    required: true,
   },
 });
 

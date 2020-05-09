@@ -43,8 +43,8 @@ const Convo = ({ convo, onStar, onDelete }) => {
     const oldText = convoText;
     setConvoText(newText);
     //insert
-    const oldT = oldText && oldText.split("");
-    const newT = newText && newText.split("");
+    const oldT = oldText && oldText.split("") || "";
+    const newT = newText && newText.split("") || "";
     let newData = {};
 
     if (oldT.length < newT.length) {
@@ -56,6 +56,7 @@ const Convo = ({ convo, onStar, onDelete }) => {
       };
     } else {
       const result = deleteT(oldT, newT);
+      console.log(result);
       newData = {
         type: "delete",
         index: result[0],
@@ -88,7 +89,20 @@ const Convo = ({ convo, onStar, onDelete }) => {
     <Card style={{ width: "50rem", margin: "auto", marginBottom: "2rem" }}>
       <Card.Body>
         <Card.Title>{convo.id}</Card.Title>
-        <Card.Text>{`"${convo.text}"`}</Card.Text>
+        <Card.Text>
+          <span>{convo.text}</span>
+          <hr />
+          <Form>
+            <Form.Group controlId="mutate">
+              <Form.Label>Edit Text:</Form.Label>
+              <Form.Control
+                className="m-2"
+                defaultValue={convoText}
+                onChange={(e) => sendMutation(e.target.value)}
+              />
+            </Form.Group>
+          </Form>
+        </Card.Text>
         <hr />
         <Card.Text>
           <div>Last Mutation By: {convo.lastMutation.author}</div>
@@ -117,35 +131,10 @@ const Convo = ({ convo, onStar, onDelete }) => {
         <Button
           className="m-2"
           variant="primary"
-          onClick={() => setMutate(true)}
+          onClick={() => setMutate(!mutate)}
         >
-          Edit
+          {mutate ? "Done" : "Edit"}
         </Button>
-        {mutate && (
-          <Form>
-            <Form.Group controlId="mutate">
-              <Form.Label>New Mutation</Form.Label>
-              <div
-                style={{
-                  display: "grid",
-                  width: "100%",
-                  "grid-template-columns": "5fr 1fr",
-                }}
-              >
-                <Form.Control
-                  className="m-2"
-                  defaultValue={convoText}
-                  onChange={(e) => sendMutation(e.target.value)}
-                />
-                <Button onClick={sendMutation} className="m-2">
-                  Send
-                </Button>
-              </div>
-
-              <Form.Text className="text-muted">Enter your mutation</Form.Text>
-            </Form.Group>
-          </Form>
-        )}
       </Card.Body>
     </Card>
   );

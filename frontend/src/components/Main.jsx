@@ -45,7 +45,8 @@ const Main = ({}) => {
         return res.json();
       })
       .then((json) => {
-        setConversations(json);
+        console.log(json.data.convos)
+        setConversations(json.data.convos);
       });
 
     if (starredConvos.length) {
@@ -89,7 +90,7 @@ const Main = ({}) => {
             <Convo
               convo={convo}
               onStar={(toStar, convo) => handleStar(toStar, convo)}
-              onDelete={(id) => handleDelete(id)}
+              onDelete={() => handleDelete(convo.id)}
             />
           ))}
       </Row>

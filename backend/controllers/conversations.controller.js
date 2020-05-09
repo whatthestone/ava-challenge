@@ -72,18 +72,18 @@ exports.update = async (req, res) => {
   }
 };
 
-// // Handle delete conversation
-// exports.delete = function (req, res) {
-//   Conversations.remove(
-//     {
-//       _id: req.params.conversation_id,
-//     },
-//     function (err, conversation) {
-//       if (err) res.send(err);
-//       res.json({
-//         status: "success",
-//         message: "Conversations deleted",
-//       });
-//     }
-//   );
-// };
+// Handle delete conversation
+exports.delete = function (req, res) {
+  Conversations.remove(
+    {
+      _id: req.params.conversation_id,
+    },
+    function (err, conversation) {
+      if (err) res.send(err);
+      res.json({
+        status: "success",
+        message: "Conversations deleted",
+      });
+    }
+  );
+};
