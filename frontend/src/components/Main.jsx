@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Container, Row, Button, Card } from "react-bootstrap";
+import { Form, Container, Row, Button, Card } from "react-bootstrap";
 import Convo from "./Convo";
-
-const URL = "ws://localhost:3030";
+import { v4 as uuidv4 } from 'uuid';
 
 const Main = ({}) => {
   const [conversations, setConversations] = useState([]);
   const [starredConvos, setStarredConvos] = useState(
     JSON.parse(localStorage.getItem("starredConvos")) || []
   );
+  const [newTitle, setNewTitle] = useState(uuidv4());
 
   useEffect(() => {
     fetch(`http://localhost:8000/conversations`)
@@ -29,6 +29,27 @@ const Main = ({}) => {
     toStar ? addStar(convo) : delStar(convo);
   };
 
+  const createConvo = () => {
+    setNewTitle(uuidv4());
+    console.log(newTitle);
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: newTitle,
+        lastMutation: {},
+        text: "",
+      }),
+    };
+
+    fetch("http://localhost:8000/conversations", requestOptions)
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+
+    alert(`Convo ${newTitle} Created!`);
+  };
+
   const handleDelete = (id) => {
     const requestOptions = {
       method: "DELETE",
@@ -45,7 +66,7 @@ const Main = ({}) => {
         return res.json();
       })
       .then((json) => {
-        console.log(json.data.convos)
+        console.log(json.data.convos);
         setConversations(json.data.convos);
       });
 
@@ -82,9 +103,12 @@ const Main = ({}) => {
   return (
     <Container>
       <Row style={{ paddingTop: "100px" }}>
-        <h1 style={{ width: "50rem", margin: "auto", marginBottom: "100px" }}>
+        <h1 style={{ width: "50rem", margin: "auto", marginBottom: "50px" }}>
           Conversations
         </h1>
+        <div className="m-5" style={{ textAlign: "center", width: "100%" }}>
+          <Button onClick={createConvo}>Create New Convo</Button>
+        </div>
         {conversations &&
           conversations.map((convo, index) => (
             <Convo

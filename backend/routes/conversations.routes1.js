@@ -8,8 +8,6 @@ router.route('/')
 router
   .route("/:conversation_id")
   .get(conversationsController.view)
-  // .patch(conversationsController.update)
-  // .put(conversationsController.update)
   .delete(conversationsController.delete);
 
 module.exports = router;
