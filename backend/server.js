@@ -37,7 +37,6 @@ app.use(bodyParser.json());
 
 //DB
 let mongoose = require("mongoose");
-// const connectionString = `mongodb://kaisingmacbook.local:27017/collab-api`;
 
 mongoose
   .connect(connectionString, {
@@ -48,7 +47,7 @@ mongoose
 
 var db = mongoose.connection;
 db.once("open", (_) => {
-  console.log("Database connected:", connectionString);
+  console.log("Database connected:");
 });
 db.on("error", (err) => {
   console.error("connection error:", err);
